@@ -13,4 +13,18 @@ print(f'Информация о животном\nИмя: {animal1.name}\nВид
 #2
 class Book:
     def __init__(self,name: str, author: str, pages: int):
-        pass
+        self.name = name
+        self.author = author
+        self.pages = pages
+
+    def open_page(self, number_page: int):
+        result = f'Страницы {number_page} не существует'
+        if number_page > Book1.pages:
+            result = result
+        else:
+            result = f'Страница {number_page} открылась'
+        return result
+
+Book1 = Book('Harry Potter','J.K. Rowling',335 )
+print(Book1.open_page(34))
+
