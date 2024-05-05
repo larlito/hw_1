@@ -6,9 +6,16 @@ class Animal:
         self.age = age
         self.speech = speech
 
-animal1 = Animal('barsik','cat',5,'Meeeeeeeew')
-print(f'Животное {animal1.name} издает звук {animal1.speech}')
-print(f'Информация о животном\nИмя: {animal1.name}\nВид: {animal1.view}\nВозраст: {animal1.age}\nЗвук: {animal1.speech}')
+    def print_speech(self):
+        print(f'Животное {self.name} издает звук {self.speech}')
+
+
+    def info_animal(self):
+        print(f'Информация о животном')
+        print(f'Имя: {self.name}')
+        print(f'Вид: {self.view}')
+        print(f'Возраст: {self.age}')
+        print(f'Звук: {self.speech}')
 
 #2
 class Book:
@@ -19,15 +26,18 @@ class Book:
 
     def open_page(self, number_page: int):
         result = f'Страницы {number_page} не существует'
-        if number_page > Book1.pages:
+        if number_page > self.pages:
             result = result
         else:
             result = f'Страница {number_page} открылась'
         return result
 
-Book1 = Book('Harry Potter','J.K. Rowling',335 )
-print(Book1.open_page(34))
-print(f'Информация о книге:')
+    def info_book(self):
+        print('Информация о книге:')
+        print(f'Название: {self.name}')
+        print(f'Автор книги: {self.author}')
+        print(f'Кол-во страниц: {self.pages}')
+
 
 #3
 class PassengerPlane:
@@ -45,14 +55,79 @@ class PassengerPlane:
         return 'Самолет приземлился!'
 
     def сhange_height(self, new_height: float):
-        plane1.current_height = new_height
-        return f'Новая высота {plane1.current_height}'
+        self.current_height = new_height
+        return f'Новая высота {self.current_height}'
+
+    def info_plane(self):
+        print(f'Информация о самолете:')
+        print(f'Производитель: {self.manufacturer}')
+        print(f'Модель: {self.model}')
+        print(f'Вместимость: {self.capacity}')
+        print(f'Текущая высота: {self.current_height}')
+        print(f'Текущая скорость: {self.current_speed}')
+
+
+class MusicAlbum:
+    def __init__(self, artist: str, album_name: str, genre: str, track_list: list):
+        self.artist = artist
+        self.album_name = album_name
+        self.genre = genre
+        self.track_list = track_list
+
+    def add_track(self, track_name: str):
+        self.track_list.append(track_name)
+        print(f'Трек {track_name} добавлен в альбом {self.album_name}')
+
+    def delete_track(self, track_name: str):
+        while track_name not in self.track_list:
+            track_name = input(f'Данного трека нет в альбом {self.album_name}\nВведите другое название >> ')
+        self.track_list.remove((track_name))
+        print(f'Трек {track_name} удален из альбома {self.album_name}')
+
+    def play_track(self,track_name: str):
+        print(f'Трек {track_name} из альбома {self.album_name} начал играть')
+
+    def info_MusicAlbum(self):
+        print('Информация об альбоме:')
+        print(f'Певец: {self.artist}')
+        print(f'Название альбома: {self.album_name}')
+        print(f'Жанр альбома: {self.genre}')
+        print(f'Список треков: {','.join(self.track_list)}')
 
 
 
-plane1 = PassengerPlane('Pobeda', 's999', 1000,5231.123,700)
-plane1.сhange_height(1)
-print(f'Информация о самолете:\nПроизводитель: {plane1.manufacturer}\nМодель: {plane1.model}\nВместимость: {plane1.capacity}\nТекущая высота: {plane1.current_height}\nТекущая скорость: {plane1.current_speed}')
+class Program:
+    @staticmethod
+    def main():
+        Cat1 = Animal('Barsik', 'Cat', 33, 'Meeeeeew')
+
+        Cat1.print_speech()
+        Cat1.info_animal()
+
+
+
+        Book1 = Book('Книга пранков', 'Й.Т.Павлович')
+
+        Book1.open_page()
+        Book1.info_book()
+
+
+        Plane1 = PassengerPlane('Кукурузник', 'В-222', 10,9999999,0)
+
+        Plane1.сhange_height()
+        Plane1.takeoff_plane()
+        Plane1.landing_plane()
+        Plane1.info_plane()
+
+
+
+        Diskoteka = MusicAlbum('Nedoprogrammist', 'Python', 'hw_1',['int','float','bool','str','list','dictionary'])
+        Diskoteka.add_track()
+        Diskoteka.delete_track()
+        Diskoteka.play_track()
+        Diskoteka.info_MusicAlbum()
+
+
 
 
 
